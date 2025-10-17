@@ -1,0 +1,70 @@
+.designing {
+  padding: 80px 80px;
+  background-color: #F5F0E8;
+  text-align: center;
+}
+
+.designing-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+  margin-top: 50px;
+  flex-wrap: wrap;
+}
+
+.designing-text {
+  flex: 1;
+  text-align: left;
+  max-width: 500px;
+}
+
+.designing-text p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #333;
+}
+
+.expert-card {
+  flex: 1;
+  background-color: #8B7355;
+  padding: 80px 100px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  min-height: 200px;
+  text-decoration: none;
+}
+
+.expert-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.expert-card h3 {
+  color: #fff;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .designing {
+    padding: 60px 20px;
+  }
+
+  .designing-content {
+    flex-direction: column;
+  }
+
+  .designing-text {
+    text-align: center;
+  }
+
+  .expert-card {
+    width: 100%;
+    padding: 60px 40px;
+  }
+}

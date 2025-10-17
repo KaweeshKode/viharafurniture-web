@@ -1,0 +1,2 @@
+/* Placeholder for hero background image */
+/* Replace public/hero-bg.jpg with your actual furniture showroom image */

@@ -1,0 +1,167 @@
+.about-page {
+  min-height: 100vh;
+  background-color: #F5F0E8;
+  padding: 60px 20px 80px;
+}
+
+/* Our Team Section */
+.our-team-section {
+  max-width: 1200px;
+  margin: 0 auto 80px;
+  text-align: center;
+}
+
+.our-team-section h1 {
+  font-size: 42px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 60px;
+}
+
+.team-grid {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+.team-member {
+  text-align: center;
+}
+
+.team-avatar {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background-color: #E8DCC8;
+  margin: 0 auto 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.team-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.team-name {
+  font-size: 16px;
+  color: #000;
+  font-weight: 500;
+}
+
+/* Vision Section */
+.vision-section {
+  max-width: 800px;
+  margin: 0 auto 80px;
+  text-align: center;
+}
+
+.vision-section h1 {
+  font-size: 42px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 30px;
+}
+
+.vision-text {
+  font-size: 16px;
+  color: #000;
+  line-height: 1.8;
+  text-align: center;
+}
+
+/* Mission Section */
+.mission-section {
+  max-width: 800px;
+  margin: 0 auto 80px;
+  text-align: center;
+}
+
+.mission-section h1 {
+  font-size: 42px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 30px;
+}
+
+.mission-text {
+  font-size: 16px;
+  color: #000;
+  line-height: 1.8;
+  text-align: center;
+}
+
+/* Company Profile Section */
+.company-profile-section {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.company-profile-section h1 {
+  font-size: 42px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 40px;
+}
+
+.profile-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.profile-list li {
+  font-size: 15px;
+  color: #000;
+  line-height: 2;
+  padding: 8px 0;
+  position: relative;
+  padding-left: 20px;
+}
+
+.profile-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #000;
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-page {
+    padding: 40px 15px 60px;
+  }
+
+  .our-team-section h1,
+  .vision-section h1,
+  .mission-section h1,
+  .company-profile-section h1 {
+    font-size: 32px;
+  }
+
+  .team-grid {
+    gap: 50px;
+  }
+
+  .team-avatar {
+    width: 150px;
+    height: 150px;
+  }
+
+  .vision-text,
+  .mission-text {
+    font-size: 14px;
+  }
+
+  .profile-list li {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+}
