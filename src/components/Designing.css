@@ -1,16 +1,22 @@
 .designing {
-  padding: 80px 0;
-  background-color: #f5f0e8;
+  padding: 80px 80px;
+  background-color: #F5F0E8;
   text-align: center;
 }
 
-/* Now handled by grid utility classes */
+.designing-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+  margin-top: 50px;
+  flex-wrap: wrap;
+}
 
 .designing-text {
+  flex: 1;
   text-align: left;
-  max-width: 600px;
-  display: flex;
-  align-items: center;
+  max-width: 500px;
 }
 
 .designing-text p {
@@ -20,15 +26,16 @@
 }
 
 .expert-card {
-  background-color: #8b7355;
-  padding: 100px 80px;
+  flex: 1;
+  background-color: #8B7355;
+  padding: 80px 100px;
   border-radius: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: transform 0.3s, box-shadow 0.3s;
-  min-height: 240px;
+  min-height: 200px;
   text-decoration: none;
 }
 
@@ -39,18 +46,23 @@
 
 .expert-card h3 {
   color: #fff;
-  font-size: 32px;
+  font-size: 28px;
   font-weight: bold;
 }
 
 @media (max-width: 768px) {
   .designing {
-    padding: 60px 0;
+    padding: 60px 20px;
   }
+
+  .designing-content {
+    flex-direction: column;
+  }
+
   .designing-text {
     text-align: center;
-    margin: 0 auto;
   }
+
   .expert-card {
     width: 100%;
     padding: 60px 40px;

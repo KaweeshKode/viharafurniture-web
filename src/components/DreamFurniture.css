@@ -1,6 +1,6 @@
 .dream-furniture {
-  padding: 100px 0 80px;
-  background-color: #f5f0e8;
+  padding: 100px 80px 80px;
+  background-color: #F5F0E8;
   text-align: center;
 }
 
@@ -11,14 +11,20 @@
   margin-bottom: 50px;
 }
 
-/* Cards are placed on the grid using column spans */
+.furniture-cards {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
 .furniture-card {
-  display: grid;
-  place-items: center;
-  width: 100%;
-  min-height: 250px;
+  width: 300px;
+  height: 200px;
   border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   transition: transform 0.3s, box-shadow 0.3s;
   text-decoration: none;
@@ -31,29 +37,29 @@
 
 .furniture-card h3 {
   color: #fff;
-  font-size: 32px;
+  font-size: 28px;
   font-weight: bold;
 }
 
 .store-card {
-  background-color: #a39b7e;
+  background-color: #A39B7E;
 }
 
 .packages-card {
-  background-color: #9c9475;
+  background-color: #9C9475;
 }
 
 @media (max-width: 768px) {
   .dream-furniture {
-    padding: 80px 0 60px;
+    padding: 80px 20px 60px;
   }
+
   .section-title {
     font-size: 32px;
   }
+
   .furniture-card {
-    min-height: 180px;
-  }
-  .furniture-card h3 {
-    font-size: 24px;
+    width: 100%;
+    max-width: 400px;
   }
 }

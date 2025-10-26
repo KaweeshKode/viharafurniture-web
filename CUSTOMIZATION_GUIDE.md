@@ -1,7 +1,6 @@
 # Vihara Furniture Homepage - Customization Checklist
 
 ## ✅ Completed
-
 - ✓ Header with navigation and social links
 - ✓ Hero section with main tagline
 - ✓ Location card overlay
@@ -15,67 +14,56 @@
 ## 📝 Required: Add Your Images
 
 ### 1. Logo (REQUIRED)
-
-- **Path:** `public/logo.png` or `public/logo.svg`
-- **Current:** Placeholder SVG logo
-- **Action:** Replace with your actual Vihara Furniture logo
+   - **Path:** `public/logo.png` or `public/logo.svg`
+   - **Current:** Placeholder SVG logo
+   - **Action:** Replace with your actual Vihara Furniture logo
 
 ### 2. Hero Background Image (REQUIRED)
-
-- **Path:** `public/hero-bg.jpg`
-- **Current:** None (will show error in browser)
-- **Action:** Add a high-quality image of your furniture showroom (1920x1080px recommended)
-- **Alternative:** You can use the furniture image from your screenshot
+   - **Path:** `public/hero-bg.jpg`
+   - **Current:** None (will show error in browser)
+   - **Action:** Add a high-quality image of your furniture showroom (1920x1080px recommended)
+   - **Alternative:** You can use the furniture image from your screenshot
 
 ## 🎨 Recommended Customizations
 
 ### 1. Update Contact Information
-
-- **Files:** `src/components/Header.jsx`, `src/components/Footer.jsx`
-- Verify phone numbers: +0728326219 / +0748563926
-- Verify email: viharafurniture@gmail.com
-- Verify address in Hero and Footer components
+   - **Files:** `src/components/Header.jsx`, `src/components/Footer.jsx`
+   - Verify phone numbers: +0728326219 / +0748563926
+   - Verify email: viharafurniture@gmail.com
+   - Verify address in Hero and Footer components
 
 ### 2. Add Real Social Media Links
-
-- **Files:** `src/components/Header.jsx`, `src/components/Footer.jsx`
-- Replace placeholder URLs with actual Facebook, Instagram, TikTok links
+   - **Files:** `src/components/Header.jsx`, `src/components/Footer.jsx`
+   - Replace placeholder URLs with actual Facebook, Instagram, TikTok links
 
 ### 3. Update Testimonials
-
-- **File:** `src/components/Testimonials.jsx`
-- Replace with real customer testimonials
-- Add more testimonials if needed
+   - **File:** `src/components/Testimonials.jsx`
+   - Replace with real customer testimonials
+   - Add more testimonials if needed
 
 ### 4. Add Navigation Functionality
-
-- Link "Store", "Packages", "About Us", "Contact" pages
-- Add routing with React Router if you have multiple pages
+   - Link "Store", "Packages", "About Us", "Contact" pages
+   - Add routing with React Router if you have multiple pages
 
 ### 5. Make Cards Interactive
-
-- **Files:**
-  - `src/components/DreamFurniture.jsx` - "Go to Store" and "Explore Packages"
-  - `src/components/Designing.jsx` - "Meet Our Expert"
-- Add onClick handlers or links to actual pages
+   - **Files:** 
+     - `src/components/DreamFurniture.jsx` - "Go to Store" and "Explore Packages"
+     - `src/components/Designing.jsx` - "Meet Our Expert"
+   - Add onClick handlers or links to actual pages
 
 ### 6. Book a Session Button
-
-- **File:** `src/components/Header.jsx`
-- Add functionality to open booking form or link to booking page
+   - **File:** `src/components/Header.jsx`
+   - Add functionality to open booking form or link to booking page
 
 ## 🚀 How to Run
 
 1. **Development Mode:**
-
    ```bash
    npm run dev
    ```
-
    Opens at http://localhost:5173
 
 2. **Build for Production:**
-
    ```bash
    npm run build
    ```
@@ -92,32 +80,6 @@
 - Mobile: Below 768px
 
 All components are responsive and will adapt to different screen sizes.
-
-### 🔢 12‑Column Grid Utilities
-
-The home page uses a lightweight 12‑column grid you can reuse anywhere.
-
-- File: `src/assets/grid.css` (auto‑imported by `src/index.css`)
-- Container: wrap content with `.container` to center and add responsive side paddings.
-- Grid: add `.grid` to define 12 equal columns with gutters.
-- Spans: use `.col-1 ... .col-12` for mobile-first spans.
-- Breakpoints: add `.md-col-N` (≥640px) and `.lg-col-N` (≥1024px) to override spans.
-- Alignment helpers: `.self-end`, `.justify-end`, `.self-center`, `.justify-center`.
-
-Example:
-
-```
-<div class="container">
-   <div class="grid">
-      <div class="col-12 md-col-6 lg-col-4">Left</div>
-      <div class="col-12 md-col-6 lg-col-8">Right</div>
-   </div>
-
-   <!-- Align to bottom-right column area -->
-   <div class="grid" style="height:300px">
-      <div class="col-12 md-col-6 lg-col-3 self-end justify-end">Card</div>
-   </div>
-```
 
 ## 🎨 Color Palette Used
 

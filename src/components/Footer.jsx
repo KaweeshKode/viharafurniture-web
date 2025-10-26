@@ -1,7 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { FaMapMarkerAlt, FaPhone, FaEnvelope } from "react-icons/fa";
-import "./Footer.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa';
+import './Footer.css';
 
 const Footer = () => {
   return (
@@ -10,28 +10,18 @@ const Footer = () => {
         <Link to="/" className="footer-logo">
           <img src="/full-logo.png" alt="Vihara Furniture" />
         </Link>
-
+        
         <div className="footer-section">
           <h3>Quick Links</h3>
           <ul>
-            <li>
-              <Link to="/">&gt;Home</Link>
-            </li>
-            <li>
-              <Link to="/store">&gt;Store</Link>
-            </li>
-            <li>
-              <Link to="/packages">&gt;Packages</Link>
-            </li>
-            <li>
-              <Link to="/about">&gt;About Us</Link>
-            </li>
-            <li>
-              <Link to="/contact">&gt;Contact</Link>
-            </li>
+            <li><Link to="/">&gt;Home</Link></li>
+            <li><Link to="/store">&gt;Store</Link></li>
+            <li><Link to="/packages">&gt;Packages</Link></li>
+            <li><Link to="/about">&gt;About Us</Link></li>
+            <li><Link to="/contact">&gt;Contact</Link></li>
           </ul>
         </div>
-
+        
         <div className="footer-section">
           <h3>Contact</h3>
           <div className="contact-item">
@@ -56,37 +46,16 @@ const Footer = () => {
           </div>
         </div>
       </div>
-
+      
       <div className="footer-social">
         <h3>Follow Us</h3>
         <div className="social-links">
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Facebook"
-          >
-            &gt;Facebook
-          </a>
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-          >
-            &gt;Instagram
-          </a>
-          <a
-            href="https://tiktok.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="TikTok"
-          >
-            &gt;TikTok
-          </a>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">&gt;Facebook</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">&gt;Instagram</a>
+          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok">&gt;TikTok</a>
         </div>
       </div>
-
+      
       <div className="footer-bottom">
         <p>© Copyright - Vihara Furniture</p>
       </div>
