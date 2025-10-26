@@ -22,3 +22,6 @@ body {
   min-width: 320px;
   background-color: #f5f0e8;
 }
+
+/* Project-wide grid utilities (12-column) */
+@import "./assets/grid.css";

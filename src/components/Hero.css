@@ -1,8 +1,8 @@
 .hero {
   position: relative;
   width: 100%;
-  min-height: 500px;
-  background-image: url("/hero-bg.jpg");
+  height: 766px;
+  background-image: url("/public/hero-bg.jpg");
   background-size: cover;
   background-position: center;
   display: flex;
@@ -23,7 +23,7 @@
 .hero-content {
   position: relative;
   z-index: 2;
-  color: #fff;
+  color: #faf9f6;
   max-width: 600px;
 }
 
@@ -42,12 +42,12 @@
 
 .hero-btn {
   display: inline-block;
-  color: #fff;
+  color: #faf9f6;
   text-decoration: none;
   font-size: 16px;
   font-weight: 600;
   padding-bottom: 5px;
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid #faf9f6;
   transition: opacity 0.3s;
 }
 
@@ -66,7 +66,10 @@
 }
 
 .location-card {
-  background-color: #fff;
+  position: absolute;
+  right: 80px;
+  bottom: -60px;
+  background-color: #faf9f6;
   padding: 30px 40px;
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -77,21 +80,21 @@
 }
 
 .location-icon {
-  color: #8b7355;
+  color: #a8a77a;
   font-size: 32px;
   margin-bottom: 10px;
 }
 
 .location-card h3 {
   font-size: 24px;
-  color: #8b7355;
+  color: #a8a77a;
   margin-bottom: 15px;
   font-weight: bold;
 }
 
 .location-card p {
   margin: 5px 0;
-  color: #8b7355;
+  color: #a8a77a;
   font-size: 14px;
   line-height: 1.6;
 }

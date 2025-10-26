@@ -61,84 +61,66 @@ const Header = () => {
 
       {/* Navbar aligned to grid */}
       <nav className="navbar">
-        <div className="container">
-          <div className="grid navbar-grid">
-            {/* Logo: cols 1-2 */}
-            <Link to="/" className="logo col-2 md-col-2 lg-col-2">
-              <img src="/logo.svg" alt="Vihara Furniture" />
+        <Link to="/" className="logo">
+          <img src="/logo.png" alt="Vihara Furniture" />
+        </Link>
+        <button
+          className="menu-toggle"
+          onClick={toggleMenu}
+          aria-label="Toggle menu"
+        >
+          {menuOpen ? <FaTimes /> : <FaBars />}
+        </button>
+        <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
+          <li>
+            <Link
+              to="/"
+              className={isActive("/") ? "active" : ""}
+              onClick={() => setMenuOpen(false)}
+            >
+              Home
             </Link>
-
-            {/* Menu toggle for mobile */}
-            <button
-              className="menu-toggle"
-              onClick={toggleMenu}
-              aria-label="Toggle menu"
+          </li>
+          <li>
+            <Link
+              to="/store"
+              className={isActive("/store") ? "active" : ""}
+              onClick={() => setMenuOpen(false)}
             >
-              {menuOpen ? <FaTimes /> : <FaBars />}
-            </button>
-
-            {/* Nav links centered in the grid */}
-            <ul
-              className={`nav-links ${
-                menuOpen ? "active" : ""
-              } col-2 md-col-5 lg-col-8`}
+              Store
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/packages"
+              className={isActive("/packages") ? "active" : ""}
+              onClick={() => setMenuOpen(false)}
             >
-              <li>
-                <Link
-                  to="/"
-                  className={isActive("/") ? "active" : ""}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/store"
-                  className={isActive("/store") ? "active" : ""}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Store
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/packages"
-                  className={isActive("/packages") ? "active" : ""}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Packages
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/about"
-                  className={isActive("/about") ? "active" : ""}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/contact"
-                  className={isActive("/contact") ? "active" : ""}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Contact
-                </Link>
-              </li>
-            </ul>
-
-            {/* CTA on the right edge */}
+              Packages
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/about"
+              className={isActive("/about") ? "active" : ""}
+              onClick={() => setMenuOpen(false)}
+            >
+              About Us
+            </Link>
+          </li>
+          <li>
             <Link
               to="/contact"
-              className="book-session-btn col-2 md-col-1 lg-col-2"
+              className={isActive("/contact") ? "active" : ""}
+              onClick={() => setMenuOpen(false)}
             >
-              Book a Session
+              Contact
             </Link>
-          </div>
-        </div>
+          </li>
+        </ul>
+        <Link to="/contact" className="book-session-btn">
+          Book a Session
+        </Link>
       </nav>
     </header>
   );
