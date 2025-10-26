@@ -1,18 +1,16 @@
 .testimonials {
-  padding: 80px 80px;
-  background-color: #F5F0E8;
+  padding: 80px 0;
+  background-color: #f5f0e8;
   text-align: center;
 }
 
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+/* Cards are placed via grid utilities; keep spacing with margin */
+.testimonials .grid {
   margin-top: 50px;
 }
 
 .testimonial-card {
-  background-color: #E8DCC8;
+  background-color: #e8dcc8;
   padding: 30px;
   border-radius: 15px;
   text-align: left;
@@ -33,7 +31,7 @@
 
 .user-icon {
   font-size: 32px;
-  color: #8B7355;
+  color: #8b7355;
 }
 
 .testimonial-header h3 {
@@ -52,10 +50,6 @@
 
 @media (max-width: 768px) {
   .testimonials {
-    padding: 60px 20px;
-  }
-
-  .testimonials-grid {
-    grid-template-columns: 1fr;
+    padding: 60px 0;
   }
 }
