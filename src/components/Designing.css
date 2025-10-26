@@ -6,7 +6,7 @@
 
 .designing-content {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 50px;
   margin-top: 50px;
@@ -26,7 +26,6 @@
 }
 
 .expert-card {
-  flex: 1;
   background-color: #8B7355;
   padding: 80px 100px;
   border-radius: 15px;
