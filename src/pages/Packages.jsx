@@ -7,19 +7,19 @@ const Packages = () => {
       id: 1,
       name: 'Traditional Sri Lankan',
       description: 'This is out "Traditional Sri Lankan" package.',
-      image: '/packages/traditional.jpg',
+      image: '/public/packages/traditional-srilankan.png',
     },
     {
       id: 2,
       name: 'Modern White',
       description: 'This is out "Modern White" package.',
-      image: '/packages/modern.jpg',
+      image: '/public/packages/modern-white.png',
     },
     {
       id: 3,
       name: 'Luxury Golden',
       description: 'This is out "Luxury Golden" package.',
-      image: '/packages/luxury.jpg',
+      image: '/public/packages/luxury-golden.png',
     },
   ];
 

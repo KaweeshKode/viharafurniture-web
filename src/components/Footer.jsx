@@ -8,7 +8,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-content">
         <Link to="/" className="footer-logo">
-          <img src="/logo.svg" alt="Vihara Furniture" />
+          <img src="/full-logo.png" alt="Vihara Furniture" />
         </Link>
         
         <div className="footer-section">

@@ -1,0 +1,85 @@
+/* 12-column grid utilities matching your Figma settings
+   Count: 12
+   Column width: 75px
+   Gutter: 15px
+   Type: Center (no offset)
+*/
+
+:root {
+  --grid-columns: 12;
+  --grid-col-width: 75px;
+  --grid-gutter: 15px;
+  --container-padding: 16px; /* inner padding so content never touches edges */
+  /* Max grid width at design size: 12*75 + 11*15 = 1065px */
+  --grid-max: calc(var(--grid-columns) * var(--grid-col-width) + (var(--grid-columns) - 1) * var(--grid-gutter));
+}
+
+/* Centered container that caps at the Figma grid width */
+.container {
+  width: min(var(--grid-max), 100%);
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
+}
+
+/* Grid wrapper: mobile-first fluid columns, fixed columns at desktop */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  column-gap: var(--grid-gutter);
+  row-gap: var(--grid-gutter);
+}
+
+/* At and above desktop, lock tracks to 75px to match Figma at design width */
+@media (min-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(var(--grid-columns), var(--grid-col-width));
+  }
+}
+
+/* Span utilities (mobile-first) */
+.col-1 { grid-column: span 1; }
+.col-2 { grid-column: span 2; }
+.col-3 { grid-column: span 3; }
+.col-4 { grid-column: span 4; }
+.col-5 { grid-column: span 5; }
+.col-6 { grid-column: span 6; }
+.col-7 { grid-column: span 7; }
+.col-8 { grid-column: span 8; }
+.col-9 { grid-column: span 9; }
+.col-10 { grid-column: span 10; }
+.col-11 { grid-column: span 11; }
+.col-12 { grid-column: span 12; }
+
+/* Breakpoints: md (>=768px), lg (>=1200px) */
+@media (min-width: 768px) {
+  .md\:col-1 { grid-column: span 1; }
+  .md\:col-2 { grid-column: span 2; }
+  .md\:col-3 { grid-column: span 3; }
+  .md\:col-4 { grid-column: span 4; }
+  .md\:col-5 { grid-column: span 5; }
+  .md\:col-6 { grid-column: span 6; }
+  .md\:col-7 { grid-column: span 7; }
+  .md\:col-8 { grid-column: span 8; }
+  .md\:col-9 { grid-column: span 9; }
+  .md\:col-10 { grid-column: span 10; }
+  .md\:col-11 { grid-column: span 11; }
+  .md\:col-12 { grid-column: span 12; }
+}
+
+@media (min-width: 1200px) {
+  .lg\:col-1 { grid-column: span 1; }
+  .lg\:col-2 { grid-column: span 2; }
+  .lg\:col-3 { grid-column: span 3; }
+  .lg\:col-4 { grid-column: span 4; }
+  .lg\:col-5 { grid-column: span 5; }
+  .lg\:col-6 { grid-column: span 6; }
+  .lg\:col-7 { grid-column: span 7; }
+  .lg\:col-8 { grid-column: span 8; }
+  .lg\:col-9 { grid-column: span 9; }
+  .lg\:col-10 { grid-column: span 10; }
+  .lg\:col-11 { grid-column: span 11; }
+  .lg\:col-12 { grid-column: span 12; }
+}
+
+/* Utility: full-width rows inside the grid */
+.row { grid-column: 1 / -1; }

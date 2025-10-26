@@ -29,7 +29,7 @@ const Header = () => {
       </div>
       <nav className="navbar">
         <Link to="/" className="logo">
-          <img src="/logo.svg" alt="Vihara Furniture" />
+          <img src="/logo.png" alt="Vihara Furniture" />
         </Link>
         <button className="menu-toggle" onClick={toggleMenu} aria-label="Toggle menu">
           {menuOpen ? <FaTimes /> : <FaBars />}
