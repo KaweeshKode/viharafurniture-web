@@ -1,12 +1,12 @@
 .designing {
   padding: 80px 80px;
-  background-color: #F5F0E8;
+  background-color: #f5f0e8;
   text-align: center;
 }
 
 .designing-content {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 50px;
   margin-top: 50px;
@@ -26,8 +26,8 @@
 }
 
 .expert-card {
-  flex: 1;
-  background-color: #8B7355;
+  /* flex: 1; */
+  background-color: #8b7355;
   padding: 80px 100px;
   border-radius: 15px;
   display: flex;
