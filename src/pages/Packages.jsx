@@ -16,13 +16,15 @@ const Packages = () => {
         "Experience the heritage of Ceylon with intricate wood carvings and warm tones.",
       details:
         "This package includes fully customizable wood finishes (Teak, Mahogany, or Mara) and traditional cushion patterns.",
-      image: "/public/packages/traditional-srilankan.png",
+      image: "/packages/traditional-srilankan.png",
       furnitureItems: [
-        { name: "Carved Sofa", img: "/products/sofa.png" },
-        { name: "Coffee Table", img: "/products/sofa.png" },
-        { name: "Veranda Chair", img: "/products/sofa.png" },
-        { name: "Display Cabinet", img: "/products/sofa.png" },
-        { name: "Wall Art", img: "/products/sofa.png" },
+        { name: "Bed", img: "/products/tsl/bed.png" },
+        { name: "Bench", img: "/products/tsl/bench.png" },
+        { name: "Coffee Table", img: "/products/tsl/coffee-table.png" },
+        { name: "Media Console", img: "/products/tsl/media-console.png" },
+        { name: "Side Table", img: "/products/tsl/side-table.png" },
+        { name: "Sofa", img: "/products/tsl/sofa.png" },
+        { name: "Wardrobe", img: "/products/tsl/wardrobe.png" },
       ],
     },
     {
@@ -32,13 +34,14 @@ const Packages = () => {
         "Clean lines and minimalist aesthetics for the contemporary home.",
       details:
         "Includes stain-resistant fabrics and modular designs that can be rearranged to fit any room size.",
-      image: "/public/packages/modern-white.png",
+      image: "/packages/modern-white.png",
       furnitureItems: [
-        { name: "Sectional Sofa", img: "/products/sofa.png" },
-        { name: "Glass Table", img: "/products/sofa.png" },
-        { name: "Rug", img: "/products/sofa.png" },
-        { name: "Floor Lamp", img: "/products/sofa.png" },
-        { name: "TV Unit", img: "/products/sofa.png" },
+        { name: "Armchair", img: "/products/mw/armchair.png" },
+        { name: "Bed", img: "/products/mw/bed.png" },
+        { name: "Coffee Table", img: "/products/mw/coffee-table.png" },
+        { name: "Media Console", img: "/products/mw/media-console.png" },
+        { name: "Sofa", img: "/products/mw/sofa.png" },
+        { name: "Wardrobe", img: "/products/mw/wardrobe.png" },
       ],
     },
     {
@@ -48,13 +51,15 @@ const Packages = () => {
         "Opulence and grandeur with premium gold accents and velvet textures.",
       details:
         "Features imported velvet fabrics, gold-leaf plating options, and handcrafted detailing.",
-      image: "/public/packages/luxury-golden.png",
+      image: "/packages/luxury-golden.png",
       furnitureItems: [
-        { name: "Royal Sofa", img: "/products/sofa.png" },
-        { name: "Chandelier", img: "/products/sofa.png" },
-        { name: "Side Table", img: "/products/sofa.png" },
-        { name: "Mirror", img: "/products/sofa.png" },
-        { name: "Console", img: "/products/sofa.png" },
+        { name: "Armchair", img: "/products/lg/armchair.png" },
+        { name: "Bed", img: "/products/lg/bed.png" },
+        { name: "Coffee Table", img: "/products/lg/coffee-table.png" },
+        { name: "Dining Table", img: "/products/lg/dining-table.png" },
+        { name: "Media Console", img: "/products/lg/media-console.png" },
+        { name: "Sofa", img: "/products/lg/sofa.png" },
+        { name: "Wardrobe", img: "/products/lg/wardrobe.png" },
       ],
     },
   ];
@@ -144,7 +149,19 @@ const Packages = () => {
                 {selectedPackage.furnitureItems.map((item, index) => (
                   <div key={index} className="furniture-item-box">
                     <div className="furn-img-placeholder">
-                      {/* Using placeholder logic for furniture items */}
+                      <img
+                        src={item.img}
+                        alt={item.name}
+                        onError={(e) => {
+                          e.target.style.background = "#ccc";
+                          e.target.style.display = "block";
+                          e.target.src =
+                            'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100"%3E%3Crect width="100" height="100" fill="%23E8DCC8"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="12" fill="%238B7355"%3E' +
+                            encodeURIComponent(item.name) +
+                            "%3C/text%3E%3C/svg%3E";
+                        }}
+                        style={{ width: "80px", height: "80px", objectFit: "cover" }}
+                      />
                       <span>{item.name}</span>
                     </div>
                   </div>
