@@ -132,7 +132,7 @@ const Packages = () => {
                     e.target.style.display = "block";
                   }}
                 />
-                <span className="img-caption">Image of the package</span>
+                <span className="img-caption"></span>
               </div>
 
               <div className="modal-info">
@@ -148,22 +148,20 @@ const Packages = () => {
               <div className="furniture-scroll-container">
                 {selectedPackage.furnitureItems.map((item, index) => (
                   <div key={index} className="furniture-item-box">
-                    <div className="furn-img-placeholder">
-                      <img
-                        src={item.img}
-                        alt={item.name}
-                        onError={(e) => {
-                          e.target.style.background = "#ccc";
-                          e.target.style.display = "block";
-                          e.target.src =
-                            'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100"%3E%3Crect width="100" height="100" fill="%23E8DCC8"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="12" fill="%238B7355"%3E' +
-                            encodeURIComponent(item.name) +
-                            "%3C/text%3E%3C/svg%3E";
-                        }}
-                        style={{ width: "80px", height: "80px", objectFit: "cover" }}
-                      />
-                      <span>{item.name}</span>
-                    </div>
+                    <img
+                      src={item.img}
+                      alt={item.name}
+                      className="furniture-img"
+                      onError={(e) => {
+                        e.target.style.background = "#ccc";
+                        e.target.style.display = "block";
+                        e.target.src =
+                          'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100"%3E%3Crect width="100" height="100" fill="%23E8DCC8"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="12" fill="%238B7355"%3E' +
+                          encodeURIComponent(item.name) +
+                          "%3C/text%3E%3C/svg%3E";
+                      }}
+                    />
+                    <span>{item.name}</span>
                   </div>
                 ))}
               </div>
