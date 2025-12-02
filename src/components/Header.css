@@ -4,11 +4,21 @@
 
 .top-bar {
   background-color: #C4B5A0;
-  padding: 10px 80px;
+  padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
+}
+
+.top-bar-container,
+.navbar-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .social-links {
@@ -33,7 +43,7 @@
 
 .navbar {
   background-color: #8B7355;
-  padding: 15px 80px;
+  padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;

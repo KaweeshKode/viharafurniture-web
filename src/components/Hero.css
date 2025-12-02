@@ -8,7 +8,17 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 0 80px;
+  padding: 0 20px;
+}
+
+.hero-container {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
 }
 
 .hero::before {
@@ -58,8 +68,8 @@
 
 .location-card {
   position: absolute;
-  right: 80px;
-  bottom: -60px;
+  right: 0;
+  bottom: -350px;
   background-color: #FAF9F6;
   padding: 30px 40px;
   border-radius: 10px;
@@ -68,17 +78,30 @@
   min-width: 250px;
 }
 
-.location-icon {
-  color: #A8A77A;
-  font-size: 32px;
-  margin-bottom: 10px;
+.location-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 15px;
 }
 
-.location-card h3 {
-  font-size: 24px;
+.location-icon {
   color: #A8A77A;
-  margin-bottom: 15px;
+  font-size: 24px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.location-card-content h3 {
+  font-size: 18px;
+  color: #A8A77A;
+  margin: 0 0 8px 0;
   font-weight: bold;
+}
+
+.location-card-content p {
+  margin: 0;
+  line-height: 1.4;
 }
 
 .location-card p {

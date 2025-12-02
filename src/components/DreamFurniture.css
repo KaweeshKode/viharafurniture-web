@@ -1,7 +1,12 @@
 .dream-furniture {
-  padding: 100px 80px 80px;
+  padding: 100px 20px 80px;
   background-color: #F5F0E8;
   text-align: center;
+}
+
+.dream-furniture-container {
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .section-title {
@@ -19,34 +24,61 @@
 }
 
 .furniture-card {
-  width: 300px;
-  height: 200px;
-  border-radius: 15px;
+  width: 320px;
+  height: 220px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
   text-decoration: none;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
 }
 
-.furniture-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+.furniture-card:hover,
+.furniture-card:focus-visible {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
 }
 
 .furniture-card h3 {
   color: #fff;
   font-size: 28px;
   font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Icon spacing and alignment for card labels */
+/* removed duplicate selector to satisfy linter */
+
+.furniture-card h3 svg {
+  margin: 0;
+  font-size: 32px;
 }
 
 .store-card {
-  background-color: #A39B7E;
+  background: linear-gradient(135deg, #A39B7E 0%, #8B7355 100%);
 }
 
 .packages-card {
-  background-color: #9C9475;
+  background: linear-gradient(135deg, #9C9475 0%, #7b6d4f 100%);
+}
+
+/* subtle decorative top highlight */
+.furniture-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.25);
 }
 
 @media (max-width: 768px) {

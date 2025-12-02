@@ -1,7 +1,12 @@
 .testimonials {
-  padding: 80px 80px;
+  padding: 80px 20px;
   background-color: #F5F0E8;
   text-align: center;
+}
+
+.testimonials-container {
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .testimonials-grid {

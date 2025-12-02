@@ -7,7 +7,8 @@ import './Footer.css';
 const Footer = () => {
   return (
     <footer className="footer">
-      <div className="footer-content">
+      <div className="footer-container">
+        <div className="footer-content">
         <Link to="/" className="footer-logo">
           <img src="/full-logo.png" alt="Vihara Furniture" />
         </Link>
@@ -67,8 +68,9 @@ const Footer = () => {
         </div>
       </div>
       
-      <div className="footer-bottom">
-        <p>© Copyright {new Date().getFullYear()} - Vihara Furniture</p>
+        <div className="footer-bottom">
+          <p>© Copyright {new Date().getFullYear()} - Vihara Furniture</p>
+        </div>
       </div>
     </footer>
   );
