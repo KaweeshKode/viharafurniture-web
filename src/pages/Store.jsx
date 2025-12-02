@@ -3,6 +3,13 @@ import "./Store.css";
 
 const Store = () => {
   const [sortBy, setSortBy] = useState("popularity");
+  // Filter state (UI only for now)
+  const [expandedFilters, setExpandedFilters] = useState({
+    color: true, // Default open
+    material: false,
+    availability: false,
+  });
+
   const [filters, setFilters] = useState({
     color: [],
     material: [],
@@ -25,21 +32,19 @@ const Store = () => {
 
   // --- CHECKOUT STATE ---
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
-  const [checkoutStep, setCheckoutStep] = useState("form"); // 'form', 'processing', 'success'
+  const [checkoutStep, setCheckoutStep] = useState("form");
   const [cardDetails, setCardDetails] = useState({
     number: "",
     holder: "",
     expiry: "",
     cvc: "",
   });
-  const [cardType, setCardType] = useState("unknown"); // 'visa', 'mastercard', 'unknown'
+  const [cardType, setCardType] = useState("unknown");
 
-  // Save cart to local storage
   useEffect(() => {
     localStorage.setItem("viharaCart", JSON.stringify(cart));
   }, [cart]);
 
-  // Card Detection Logic
   useEffect(() => {
     const num = cardDetails.number.replace(/\D/g, "");
     if (num.startsWith("4")) {
@@ -60,11 +65,9 @@ const Store = () => {
   const handleCheckoutSubmit = (e) => {
     e.preventDefault();
     setCheckoutStep("processing");
-
-    // Simulate payment processing
     setTimeout(() => {
       setCheckoutStep("success");
-      setCart([]); // Clear cart
+      setCart([]);
       localStorage.removeItem("viharaCart");
     }, 2000);
   };
@@ -75,7 +78,14 @@ const Store = () => {
     setCardDetails({ number: "", holder: "", expiry: "", cvc: "" });
   };
 
-  // Sample products
+  // Toggle dropdown visibility
+  const toggleFilter = (section) => {
+    setExpandedFilters((prev) => ({
+      ...prev,
+      [section]: !prev[section],
+    }));
+  };
+
   const products = [
     {
       id: 1,
@@ -177,7 +187,35 @@ const Store = () => {
     },
   ];
 
-  // --- CART FUNCTIONS ---
+  const getSortedProducts = () => {
+    let sorted = [...products];
+    switch (sortBy) {
+      case "popularity":
+        sorted.sort((a, b) => {
+          const aIsModern = a.name.startsWith("Modern");
+          const bIsModern = b.name.startsWith("Modern");
+          if (aIsModern && !bIsModern) return -1;
+          if (!aIsModern && bIsModern) return 1;
+          return 0;
+        });
+        break;
+      case "price-low":
+        sorted.sort((a, b) => a.price - b.price);
+        break;
+      case "price-high":
+        sorted.sort((a, b) => b.price - a.price);
+        break;
+      case "latest":
+        sorted.sort((a, b) => b.id - a.id);
+        break;
+      default:
+        break;
+    }
+    return sorted;
+  };
+
+  const displayedProducts = getSortedProducts();
+
   const addToCart = (product) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((item) => item.id === product.id);
@@ -216,19 +254,37 @@ const Store = () => {
 
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
+  // Filter Options Data
+  const colorOptions = [
+    "Brown",
+    "Black",
+    "White",
+    "Gold",
+    "Grey",
+    "Red",
+    "Blue",
+  ];
+  const materialOptions = [
+    "Teak Wood",
+    "Mahogany",
+    "Fabric",
+    "Velvet",
+    "Leather",
+    "Glass",
+  ];
+  const availabilityOptions = ["In Stock", "Pre Order"];
+
   return (
     <div className="store-page">
       <div className="store-header-section">
         <h1>Sri Lanka's #1 Furniture Brand</h1>
       </div>
 
-      {/* --- CART BUTTON --- */}
       <button className="cart-float-btn" onClick={() => setIsCartOpen(true)}>
         <span className="icon">🛒</span>
         {totalItems > 0 && <span className="cart-badge">{totalItems}</span>}
       </button>
 
-      {/* --- CART SIDEBAR --- */}
       <button
         type="button"
         className={`cart-overlay ${isCartOpen ? "open" : ""}`}
@@ -238,6 +294,7 @@ const Store = () => {
         }}
         aria-label="Close cart"
       ></button>
+
       <div className={`cart-sidebar ${isCartOpen ? "open" : ""}`}>
         <div className="cart-header">
           <h2>Your Cart ({totalItems})</h2>
@@ -316,7 +373,6 @@ const Store = () => {
         )}
       </div>
 
-      {/* --- CHECKOUT MODAL --- */}
       {isCheckoutOpen && (
         <div className="checkout-modal-overlay">
           <div className="checkout-modal">
@@ -450,24 +506,78 @@ const Store = () => {
       <div className="store-container">
         <aside className="store-sidebar">
           <h2>Filter By</h2>
+
+          {/* Color Filter */}
           <div className="filter-section">
-            <button className="filter-header">
+            <button
+              className="filter-header"
+              onClick={() => toggleFilter("color")}
+            >
               <span>Color</span>
-              <span className="arrow">▼</span>
+              <span className={`arrow ${expandedFilters.color ? "up" : ""}`}>
+                ▼
+              </span>
             </button>
+            {expandedFilters.color && (
+              <div className="filter-options">
+                {colorOptions.map((option, index) => (
+                  <label key={index} className="filter-option-item">
+                    <input type="checkbox" name="color" value={option} />
+                    <span>{option}</span>
+                  </label>
+                ))}
+              </div>
+            )}
           </div>
+
+          {/* Material Filter */}
           <div className="filter-section">
-            <button className="filter-header">
+            <button
+              className="filter-header"
+              onClick={() => toggleFilter("material")}
+            >
               <span>Material</span>
-              <span className="arrow">▼</span>
+              <span className={`arrow ${expandedFilters.material ? "up" : ""}`}>
+                ▼
+              </span>
             </button>
+            {expandedFilters.material && (
+              <div className="filter-options">
+                {materialOptions.map((option, index) => (
+                  <label key={index} className="filter-option-item">
+                    <input type="checkbox" name="material" value={option} />
+                    <span>{option}</span>
+                  </label>
+                ))}
+              </div>
+            )}
           </div>
+
+          {/* Availability Filter */}
           <div className="filter-section">
-            <button className="filter-header">
+            <button
+              className="filter-header"
+              onClick={() => toggleFilter("availability")}
+            >
               <span>Availability</span>
-              <span className="arrow">▼</span>
+              <span
+                className={`arrow ${expandedFilters.availability ? "up" : ""}`}
+              >
+                ▼
+              </span>
             </button>
+            {expandedFilters.availability && (
+              <div className="filter-options">
+                {availabilityOptions.map((option, index) => (
+                  <label key={index} className="filter-option-item">
+                    <input type="checkbox" name="availability" value={option} />
+                    <span>{option}</span>
+                  </label>
+                ))}
+              </div>
+            )}
           </div>
+
           <div className="filter-section price-filter">
             <button className="filter-header">
               <span>Price</span>
@@ -504,20 +614,21 @@ const Store = () => {
 
         <div className="store-content">
           <div className="sort-section">
+            <span className="sort-label">Sort by:</span>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
               className="sort-dropdown"
             >
-              <option value="popularity">Sort by popularity</option>
-              <option value="price-low">Sort by price: low to high</option>
-              <option value="price-high">Sort by price: high to low</option>
-              <option value="latest">Sort by latest</option>
+              <option value="popularity">Popularity</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="latest">Latest Arrivals</option>
             </select>
           </div>
 
           <div className="products-grid">
-            {products.map((product) => (
+            {displayedProducts.map((product) => (
               <div key={product.id} className="product-card">
                 <div className="product-image">
                   <img

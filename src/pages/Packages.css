@@ -248,6 +248,7 @@
   gap: 20px;
   overflow-x: auto;
   padding: 10px 5px 20px 5px;
+  align-items: stretch;
 }
 
 .furniture-scroll-container::-webkit-scrollbar {
@@ -263,18 +264,37 @@
 }
 
 .furniture-item-box {
-  flex: 0 0 200px;
-  height: 200px;
+  flex: 0 0 250px;
+  height: 280px;
   background-color: #fff;
   border: 1px solid #e8dcc8;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   transition: transform 0.2s, box-shadow 0.2s;
   cursor: pointer;
   padding: 10px;
+}
+
+.furniture-item-box img {
+  width: 100%;
+  height: 220px; /* FORCE LARGE HEIGHT */
+  object-fit: contain; /* Keeps aspect ratio but fills the 220px height */
+  margin-bottom: 10px;
+  display: block; /* Removes inline spacing issues */
+}
+
+/* Style the text label below the image */
+.furniture-item-box span,
+.furniture-item-box p,
+.furn-img-placeholder {
+  font-size: 16px;
+  font-weight: 600;
+  color: #8b7355;
+  text-align: center;
+  margin: 0;
 }
 
 .furniture-item-box:hover {
@@ -449,8 +469,12 @@
   }
 
   .furniture-item-box {
-    flex: 0 0 130px;
-    height: 130px;
+    flex: 0 0 180px;
+    height: 200px;
+  }
+
+  .furniture-item-box img {
+    height: 120px;
   }
 
   .book-session-btn-modal {
