@@ -16,9 +16,10 @@ const Hero = () => {
           <FaMapMarkerAlt />
         </div>
         <h3>Location</h3>
-        <p>#41, Dutugamunu Street,</p>
-        <p>Pamankada,</p>
-        <p>Kohuwala</p>
+        <p>No.108/C/1,</p>
+        <p>Aluthgama,</p>
+        <p>Bogamuwa,</p>
+        <p>Yakkala</p>
         <p>Sri Lanka</p>
       </div>
     </section>

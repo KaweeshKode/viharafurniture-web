@@ -66,8 +66,8 @@ const AboutUs = () => {
           <li>Corporate Name : Vihara Furniture</li>
           <li>Type of Business :  Interior Designers and Furniture Manufacturers/ Supplier</li>
           <li>Company Registration No. : PV 12345</li>
-          <li>Business address : #41, Dutugamunu Street, Pamankada, Kohuwala.</li>
-          <li>Contact Numbers : +0728326219 / +0774856392­6</li>
+          <li>Business address : No.108/C/1, Aluthgama, Bogamuwa, Yakkala.</li>
+          <li>Contact Numbers : 0757161759 / 0767536087</li>
           <li>Forest Department Registration No. : TD /3220/ A</li>
           <li>Registered under Forest Ordinance (Chapter 451) as amended by act no.13 of 1996</li>
           <li>Affiliated Bankers : Seylan Bank PLC, Hatton National Bank PLC, Nations Trust Bank PLC</li>

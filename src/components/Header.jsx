@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   FaFacebookF,
-  FaInstagram,
   FaEnvelope,
   FaBars,
   FaTimes,
 } from "react-icons/fa";
+import { FaTiktok } from "react-icons/fa6";
 import "./Header.css";
 
 const Header = () => {
@@ -26,7 +26,7 @@ const Header = () => {
       <div className="top-bar">
         <div className="social-links">
           <a
-            href="https://facebook.com"
+            href="https://www.facebook.com/share/17sPFNQY7r/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Facebook"
@@ -34,19 +34,19 @@ const Header = () => {
             <FaFacebookF />
           </a>
           <a
-            href="https://instagram.com"
+            href="https://www.tiktok.com/@vihara.furniture?_r=1&_t=ZS-91m6L7kpS8D"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Instagram"
+            aria-label="TikTok"
           >
-            <FaInstagram />
+            <FaTiktok />
           </a>
-          <a href="mailto:viharafurniture@gmail.com" aria-label="Email">
+          <a href="mailto:viharafurniture11@gmail.com" aria-label="Email">
             <FaEnvelope />
           </a>
         </div>
         <div className="contact-info">
-          <span>+0728326219 / +0748563926</span>
+          <span>0757161759 / 0767536087</span>
         </div>
       </div>
       <nav className="navbar">
