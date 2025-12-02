@@ -16,7 +16,8 @@ const Store = () => {
     try {
       const savedCart = localStorage.getItem("viharaCart");
       return savedCart ? JSON.parse(savedCart) : [];
-    } catch (e) {
+    } catch (error) {
+      console.error("Failed to read viharaCart from localStorage:", error);
       return [];
     }
   });
@@ -78,58 +79,100 @@ const Store = () => {
   const products = [
     {
       id: 1,
-      name: "Velvet Sofa",
-      price: 45000,
-      image: "/public/products/sofa.png",
+      name: "L-Shape Modern",
+      price: 85000,
+      image: "/products/store/sofa01.png",
       category: "Sofa",
     },
     {
       id: 2,
-      name: "L-Shape Modern",
-      price: 85000,
-      image: "/public/products/sofa.png",
+      name: "Velvet Sofa",
+      price: 45000,
+      image: "/products/store/sofa02.png",
       category: "Sofa",
     },
     {
       id: 3,
-      name: "Classic Recliner",
+      name: "Classic Armchair",
       price: 62000,
-      image: "/public/products/sofa.png",
-      category: "Sofa",
-    },
-    {
-      id: 4,
-      name: "Wooden Loveseat",
-      price: 35000,
-      image: "/public/products/sofa.png",
-      category: "Sofa",
-    },
-    {
-      id: 5,
-      name: "Office Chair",
-      price: 25000,
-      image: "/public/products/sofa.png",
+      image: "/products/store/armchair01.png",
       category: "Chair",
     },
     {
+      id: 4,
+      name: "Modern Armchair",
+      price: 35000,
+      image: "/products/store/armchair02.png",
+      category: "Chair",
+    },
+    {
+      id: 5,
+      name: "Coffee Table",
+      price: 25000,
+      image: "/products/store/coffee-table01.png",
+      category: "Table",
+    },
+    {
       id: 6,
-      name: "Dining Set",
-      price: 120000,
-      image: "/public/products/sofa.png",
-      category: "Dining",
+      name: "Designer Coffee Table",
+      price: 28000,
+      image: "/products/store/coffee-table02.png",
+      category: "Table",
     },
     {
       id: 7,
-      name: "Bed Frame",
-      price: 95000,
-      image: "/public/products/sofa.png",
-      category: "Bed",
+      name: "Side Table",
+      price: 18000,
+      image: "/products/store/side-table01.png",
+      category: "Table",
     },
     {
       id: 8,
-      name: "Storage Unit",
-      price: 18000,
-      image: "/public/products/sofa.png",
+      name: "Modern Side Table",
+      price: 22000,
+      image: "/products/store/side-table02.png",
+      category: "Table",
+    },
+    {
+      id: 9,
+      name: "Luxury Bed",
+      price: 95000,
+      image: "/products/store/bed01.png",
+      category: "Bed",
+    },
+    {
+      id: 10,
+      name: "Modern Bed",
+      price: 78000,
+      image: "/products/store/bed02.png",
+      category: "Bed",
+    },
+    {
+      id: 11,
+      name: "Media Console",
+      price: 42000,
+      image: "/products/store/meadia-console01.png",
+      category: "Storage",
+    },
+    {
+      id: 12,
+      name: "TV Unit",
+      price: 38000,
+      image: "/products/store/meadia-console02.png",
+      category: "Storage",
+    },
+    {
+      id: 13,
+      name: "Classic Wardrobe",
+      price: 65000,
+      image: "/products/store/wardrobe01.png",
+      category: "Storage",
+    },
+    {
+      id: 14,
+      name: "Modern Wardrobe",
+      price: 72000,
+      image: "/products/store/wardrobe02.png",
       category: "Storage",
     },
   ];
@@ -186,10 +229,15 @@ const Store = () => {
       </button>
 
       {/* --- CART SIDEBAR --- */}
-      <div
+      <button
+        type="button"
         className={`cart-overlay ${isCartOpen ? "open" : ""}`}
         onClick={() => setIsCartOpen(false)}
-      ></div>
+        onKeyDown={(e) => {
+          if (e.key === "Escape") setIsCartOpen(false);
+        }}
+        aria-label="Close cart"
+      ></button>
       <div className={`cart-sidebar ${isCartOpen ? "open" : ""}`}>
         <div className="cart-header">
           <h2>Your Cart ({totalItems})</h2>
@@ -461,7 +509,7 @@ const Store = () => {
               onChange={(e) => setSortBy(e.target.value)}
               className="sort-dropdown"
             >
-              <option value="popularity">Sort by popularity ▼</option>
+              <option value="popularity">Sort by popularity</option>
               <option value="price-low">Sort by price: low to high</option>
               <option value="price-high">Sort by price: high to low</option>
               <option value="latest">Sort by latest</option>
