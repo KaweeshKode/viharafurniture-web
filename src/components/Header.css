@@ -4,11 +4,21 @@
 
 .top-bar {
   background-color: #C4B5A0;
-  padding: 10px 80px;
+  padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
+}
+
+.top-bar-container,
+.navbar-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .social-links {
@@ -33,7 +43,7 @@
 
 .navbar {
   background-color: #8B7355;
-  padding: 15px 80px;
+  padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -107,10 +117,24 @@
 @media (max-width: 968px) {
   .navbar {
     padding: 15px 40px;
+    justify-content: space-between;
   }
 
   .menu-toggle {
     display: block;
+    order: 3;
+  }
+
+  .logo {
+    order: 1;
+  }
+
+  .book-session-btn {
+    order: 2;
+    margin: 0 auto;
+    font-size: 14px;
+    padding: 10px 24px;
+    min-height: 44px;
   }
 
   .nav-links {
@@ -141,11 +165,6 @@
     display: block;
     padding: 12px 0;
     font-size: 18px;
-  }
-
-  .book-session-btn {
-    font-size: 13px;
-    padding: 8px 20px;
   }
 }
 

@@ -8,7 +8,17 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 0 80px;
+  padding: 0 20px;
+}
+
+.hero-container {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
 }
 
 .hero::before {
@@ -42,24 +52,36 @@
 }
 
 .hero-btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   color: #FAF9F6;
   text-decoration: none;
   font-size: 16px;
   font-weight: 600;
   padding-bottom: 5px;
   border-bottom: 2px solid #FAF9F6;
-  transition: opacity 0.3s;
+  transition: all 0.3s;
 }
 
 .hero-btn:hover {
   opacity: 0.8;
+  gap: 12px;
+}
+
+.hero-btn svg {
+  font-size: 14px;
+  transition: transform 0.3s;
+}
+
+.hero-btn:hover svg {
+  transform: translateX(3px);
 }
 
 .location-card {
   position: absolute;
-  right: 80px;
-  bottom: -60px;
+  right: 0;
+  bottom: -350px;
   background-color: #FAF9F6;
   padding: 30px 40px;
   border-radius: 10px;
@@ -68,22 +90,35 @@
   min-width: 250px;
 }
 
-.location-icon {
-  color: #A8A77A;
-  font-size: 32px;
-  margin-bottom: 10px;
+.location-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 15px;
 }
 
-.location-card h3 {
+.location-icon {
+  color: #9FA582;
   font-size: 24px;
-  color: #A8A77A;
-  margin-bottom: 15px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.location-card-content h3 {
+  font-size: 18px;
+  color: #9FA582;
+  margin: 0 0 8px 0;
   font-weight: bold;
+}
+
+.location-card-content p {
+  margin: 0;
+  line-height: 1.4;
 }
 
 .location-card p {
   margin: 5px 0;
-  color: #A8A77A;
+  color: #666;
   font-size: 14px;
   line-height: 1.6;
 }
@@ -91,16 +126,24 @@
 @media (max-width: 768px) {
   .hero {
     padding: 0 20px;
-    height: 400px;
+    height: 500px;
   }
 
   .hero-title {
     font-size: 32px;
+    margin-bottom: 20px;
+  }
+
+  .hero-subtitle {
+    font-size: 14px;
+  }
+
+  .hero-btn {
+    font-size: 15px;
+    padding: 12px 0 10px;
   }
 
   .location-card {
-    right: 20px;
-    bottom: -40px;
-    padding: 20px;
+    display: none;
   }
 }
