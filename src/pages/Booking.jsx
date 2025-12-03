@@ -178,7 +178,7 @@ const Booking = () => {
         <div className="consultant-header">
           <div className="consultant-avatar">
             <img 
-              src="/team/female-avatar.png" 
+              src="/team/female-avatar-2.png" 
               alt="Tharu Samaraweera"
               className="avatar-circle"
             />

@@ -14,13 +14,13 @@ const AboutUs = () => {
       id: 2,
       name: 'K.A.Sarasi Lakmini',
       position: 'Marketing (Facebook & TikTok)',
-      image: '/team/female-avatar.png',
+      image: '/team/female-avatar-1.png',
     },
     {
       id: 3,
       name: 'Tharu Samaraweera',
       position: 'Designer & Consultation',
-      image: '/team/female-avatar.png',
+      image: '/team/female-avatar-2.png',
     }
   ];
 
