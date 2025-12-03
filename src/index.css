@@ -1,5 +1,5 @@
 :root {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Poppins', sans-serif;
   line-height: 1.5;
   font-weight: 400;
   font-synthesis: none;
@@ -20,4 +20,7 @@ body {
   min-width: 320px;
   background-color: #F5F0E8;
 }
+
+/* Project-wide grid utilities (12-column) */
+@import './assets/grid.css';
 

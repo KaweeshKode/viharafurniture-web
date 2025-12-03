@@ -1,12 +1,17 @@
 .designing {
-  padding: 80px 80px;
-  background-color: #F5F0E8;
+  padding: 80px 20px;
+  background-color: #f5f0e8;
   text-align: center;
+}
+
+.designing-container {
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .designing-content {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 50px;
   margin-top: 50px;
@@ -26,28 +31,51 @@
 }
 
 .expert-card {
-  flex: 1;
-  background-color: #8B7355;
+  background: linear-gradient(135deg, #8B7355 0%, #6d5842 100%);
   padding: 80px 100px;
-  border-radius: 15px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
-  min-height: 200px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  min-height: 220px;
   text-decoration: none;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
 }
 
-.expert-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+.expert-card:hover,
+.expert-card:focus-visible {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+}
+
+.expert-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .expert-card h3 {
   color: #fff;
   font-size: 28px;
   font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Icon spacing and alignment for expert card */
+.expert-card h3 svg {
+  margin: 0;
+  font-size: 32px;
 }
 
 @media (max-width: 768px) {
@@ -57,14 +85,28 @@
 
   .designing-content {
     flex-direction: column;
+    gap: 40px;
   }
 
   .designing-text {
     text-align: center;
   }
 
+  .designing-text p {
+    font-size: 16px;
+  }
+
   .expert-card {
     width: 100%;
     padding: 60px 40px;
+    min-height: 200px;
+  }
+
+  .expert-card h3 {
+    font-size: 24px;
+  }
+
+  .expert-card h3 svg {
+    font-size: 28px;
   }
 }

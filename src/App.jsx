@@ -1,17 +1,20 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Home from './pages/Home';
-import Store from './pages/Store';
-import Packages from './pages/Packages';
-import AboutUs from './pages/AboutUs';
-import Contact from './pages/Contact';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
+import Home from "./pages/Home";
+import Store from "./pages/Store";
+import Packages from "./pages/Packages";
+import AboutUs from "./pages/AboutUs";
+import Contact from "./pages/Contact";
+import Booking from "./pages/Booking";
+import "./App.css";
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="App">
         <Header />
         <Routes>
@@ -20,6 +23,7 @@ function App() {
           <Route path="/packages" element={<Packages />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/booking" element={<Booking />} />
         </Routes>
         <Footer />
       </div>

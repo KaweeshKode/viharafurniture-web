@@ -1,131 +1,609 @@
-import React, { useState } from 'react';
-import './Store.css';
+import React, { useState, useEffect } from "react";
+import { FaChevronDown } from "react-icons/fa";
+import "./Store.css";
 
 const Store = () => {
-  const [sortBy, setSortBy] = useState('popularity');
+  const [sortBy, setSortBy] = useState("popularity");
+  // Filter state (UI only for now)
+  const [expandedFilters, setExpandedFilters] = useState({
+    color: true, // Default open
+    material: false,
+    availability: false,
+  });
+
   const [filters, setFilters] = useState({
     color: [],
     material: [],
     availability: [],
-    priceMin: '',
-    priceMax: ''
+    priceMin: "",
+    priceMax: "",
   });
 
-  // Sample products - all sofas for now matching your screenshot
+  // --- CART STATE ---
+  const [cart, setCart] = useState(() => {
+    try {
+      const savedCart = localStorage.getItem("viharaCart");
+      return savedCart ? JSON.parse(savedCart) : [];
+    } catch (error) {
+      console.error("Failed to read viharaCart from localStorage:", error);
+      return [];
+    }
+  });
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  // --- CHECKOUT STATE ---
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [checkoutStep, setCheckoutStep] = useState("form");
+  const [cardDetails, setCardDetails] = useState({
+    number: "",
+    holder: "",
+    expiry: "",
+    cvc: "",
+  });
+  const [cardType, setCardType] = useState("unknown");
+
+  useEffect(() => {
+    localStorage.setItem("viharaCart", JSON.stringify(cart));
+  }, [cart]);
+
+  useEffect(() => {
+    const num = cardDetails.number.replace(/\D/g, "");
+    if (num.startsWith("4")) {
+      setCardType("visa");
+    } else if (/^5[1-5]/.test(num) || /^2[2-7]/.test(num)) {
+      setCardType("mastercard");
+    } else {
+      setCardType("unknown");
+    }
+  }, [cardDetails.number]);
+
+  const handleCardInput = (e) => {
+    let value = e.target.value.replace(/\D/g, "");
+    if (value.length > 16) value = value.slice(0, 16);
+    setCardDetails({ ...cardDetails, number: value });
+  };
+
+  const handleCheckoutSubmit = (e) => {
+    e.preventDefault();
+    setCheckoutStep("processing");
+    setTimeout(() => {
+      setCheckoutStep("success");
+      setCart([]);
+      localStorage.removeItem("viharaCart");
+    }, 2000);
+  };
+
+  const closeCheckout = () => {
+    setIsCheckoutOpen(false);
+    setCheckoutStep("form");
+    setCardDetails({ number: "", holder: "", expiry: "", cvc: "" });
+  };
+
+  // Toggle dropdown visibility
+  const toggleFilter = (section) => {
+    setExpandedFilters((prev) => ({
+      ...prev,
+      [section]: !prev[section],
+    }));
+  };
+
   const products = [
     {
       id: 1,
-      name: 'Sofa',
-      price: '0.00',
-      image: '/products/sofa1.jpg',
+      name: "L-Shape Modern",
+      price: 85000,
+      image: "/products/store/sofa01.png",
+      category: "Sofa",
     },
     {
       id: 2,
-      name: 'Sofa',
-      price: '0.00',
-      image: '/products/sofa2.jpg',
+      name: "Velvet Sofa",
+      price: 45000,
+      image: "/products/store/sofa02.png",
+      category: "Sofa",
     },
     {
       id: 3,
-      name: 'Sofa',
-      price: '0.00',
-      image: '/products/sofa3.jpg',
+      name: "Classic Armchair",
+      price: 62000,
+      image: "/products/store/armchair01.png",
+      category: "Chair",
     },
     {
       id: 4,
-      name: 'Sofa',
-      price: '0.00',
-      image: '/products/sofa4.jpg',
+      name: "Modern Armchair",
+      price: 35000,
+      image: "/products/store/armchair02.png",
+      category: "Chair",
     },
     {
       id: 5,
-      name: 'Sofa',
-      price: '0.00',
-      image: '/products/sofa5.jpg',
+      name: "Coffee Table",
+      price: 25000,
+      image: "/products/store/coffee-table01.png",
+      category: "Table",
     },
     {
       id: 6,
-      name: 'Sofa',
-      price: '0.00',
-      image: '/products/sofa6.jpg',
+      name: "Designer Coffee Table",
+      price: 28000,
+      image: "/products/store/coffee-table02.png",
+      category: "Table",
     },
     {
       id: 7,
-      name: 'Sofa',
-      price: '0.00',
-      image: '/products/sofa7.jpg',
+      name: "Side Table",
+      price: 18000,
+      image: "/products/store/side-table01.png",
+      category: "Table",
     },
     {
       id: 8,
-      name: 'Sofa',
-      price: '0.00',
-      image: '/products/sofa8.jpg',
+      name: "Modern Side Table",
+      price: 22000,
+      image: "/products/store/side-table02.png",
+      category: "Table",
+    },
+    {
+      id: 9,
+      name: "Luxury Bed",
+      price: 95000,
+      image: "/products/store/bed01.png",
+      category: "Bed",
+    },
+    {
+      id: 10,
+      name: "Modern Bed",
+      price: 78000,
+      image: "/products/store/bed02.png",
+      category: "Bed",
+    },
+    {
+      id: 11,
+      name: "Media Console",
+      price: 42000,
+      image: "/products/store/meadia-console01.png",
+      category: "Storage",
+    },
+    {
+      id: 12,
+      name: "TV Unit",
+      price: 38000,
+      image: "/products/store/meadia-console02.png",
+      category: "Storage",
+    },
+    {
+      id: 13,
+      name: "Classic Wardrobe",
+      price: 65000,
+      image: "/products/store/wardrobe01.png",
+      category: "Storage",
+    },
+    {
+      id: 14,
+      name: "Modern Wardrobe",
+      price: 72000,
+      image: "/products/store/wardrobe02.png",
+      category: "Storage",
     },
   ];
 
-  const handleSortChange = (e) => {
-    setSortBy(e.target.value);
+  const getSortedProducts = () => {
+    let sorted = [...products];
+    switch (sortBy) {
+      case "popularity":
+        sorted.sort((a, b) => {
+          const aIsModern = a.name.startsWith("Modern");
+          const bIsModern = b.name.startsWith("Modern");
+          if (aIsModern && !bIsModern) return -1;
+          if (!aIsModern && bIsModern) return 1;
+          return 0;
+        });
+        break;
+      case "price-low":
+        sorted.sort((a, b) => a.price - b.price);
+        break;
+      case "price-high":
+        sorted.sort((a, b) => b.price - a.price);
+        break;
+      case "latest":
+        sorted.sort((a, b) => b.id - a.id);
+        break;
+      default:
+        break;
+    }
+    return sorted;
   };
+
+  const displayedProducts = getSortedProducts();
+
+  const addToCart = (product) => {
+    setCart((prevCart) => {
+      const existingItem = prevCart.find((item) => item.id === product.id);
+      if (existingItem) {
+        return prevCart.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      } else {
+        return [...prevCart, { ...product, quantity: 1 }];
+      }
+    });
+    setIsCartOpen(true);
+  };
+
+  const removeFromCart = (id) => {
+    setCart((prevCart) => prevCart.filter((item) => item.id !== id));
+  };
+
+  const updateQuantity = (id, change) => {
+    setCart((prevCart) =>
+      prevCart.map((item) => {
+        if (item.id === id) {
+          const newQuantity = item.quantity + change;
+          return newQuantity > 0 ? { ...item, quantity: newQuantity } : item;
+        }
+        return item;
+      })
+    );
+  };
+
+  const calculateTotal = () => {
+    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
+
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+  // Filter Options Data
+  const colorOptions = [
+    "Brown",
+    "Black",
+    "White",
+    "Gold",
+    "Grey",
+    "Red",
+    "Blue",
+  ];
+  const materialOptions = [
+    "Teak Wood",
+    "Mahogany",
+    "Fabric",
+    "Velvet",
+    "Leather",
+    "Glass",
+  ];
+  const availabilityOptions = ["In Stock", "Pre Order"];
 
   return (
     <div className="store-page">
       <div className="store-header-section">
-        <h1>Sri Lanka's #1 Furniture Brand</h1>
+        <div className="page-header">
+          <h1 className="store-title">Sri Lanka's #1 Furniture Brand</h1>
+          <p className="store-tagline">
+            Explore our curated collection of premium furniture pieces crafted with care and designed for your comfort.
+          </p>
+        </div>
       </div>
 
+      <button className="cart-float-btn" onClick={() => setIsCartOpen(true)}>
+        <span className="icon">🛒</span>
+        {totalItems > 0 && <span className="cart-badge">{totalItems}</span>}
+      </button>
+
+      <button
+        type="button"
+        className={`cart-overlay ${isCartOpen ? "open" : ""}`}
+        onClick={() => setIsCartOpen(false)}
+        onKeyDown={(e) => {
+          if (e.key === "Escape") setIsCartOpen(false);
+        }}
+        aria-label="Close cart"
+      ></button>
+
+      <div className={`cart-sidebar ${isCartOpen ? "open" : ""}`}>
+        <div className="cart-header">
+          <h2>Your Cart ({totalItems})</h2>
+          <button className="close-cart" onClick={() => setIsCartOpen(false)}>
+            ✕
+          </button>
+        </div>
+
+        <div className="cart-items">
+          {cart.length === 0 ? (
+            <div className="empty-cart">
+              <span className="empty-icon">🛒</span>
+              <p>Your cart is empty.</p>
+              <button
+                className="start-shopping"
+                onClick={() => setIsCartOpen(false)}
+              >
+                Start Shopping
+              </button>
+            </div>
+          ) : (
+            cart.map((item) => (
+              <div key={item.id} className="cart-item">
+                <div className="cart-item-img">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    onError={(e) => {
+                      e.target.src =
+                        'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100"%3E%3Crect width="100" height="100" fill="%23E8DCC8"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="12" fill="%238B7355"%3EIMG%3C/text%3E%3C/svg%3E';
+                    }}
+                  />
+                </div>
+                <div className="cart-item-details">
+                  <h4>{item.name}</h4>
+                  <p className="cart-item-price">
+                    LKR {item.price.toLocaleString()}
+                  </p>
+                  <div className="cart-controls">
+                    <button onClick={() => updateQuantity(item.id, -1)}>
+                      -
+                    </button>
+                    <span>{item.quantity}</span>
+                    <button onClick={() => updateQuantity(item.id, 1)}>
+                      +
+                    </button>
+                  </div>
+                </div>
+                <button
+                  className="remove-item"
+                  onClick={() => removeFromCart(item.id)}
+                >
+                  🗑️
+                </button>
+              </div>
+            ))
+          )}
+        </div>
+
+        {cart.length > 0 && (
+          <div className="cart-footer">
+            <div className="cart-total">
+              <span>Total:</span>
+              <span>LKR {calculateTotal().toLocaleString()}</span>
+            </div>
+            <button
+              className="checkout-btn"
+              onClick={() => {
+                setIsCartOpen(false);
+                setIsCheckoutOpen(true);
+              }}
+            >
+              Proceed to Checkout
+            </button>
+          </div>
+        )}
+      </div>
+
+      {isCheckoutOpen && (
+        <div className="checkout-modal-overlay">
+          <div className="checkout-modal">
+            <button className="close-checkout" onClick={closeCheckout}>
+              ✕
+            </button>
+
+            {checkoutStep === "form" && (
+              <div className="checkout-form-container">
+                <h2>Secure Checkout</h2>
+                <div className="order-summary-mini">
+                  <p>Total Amount to Pay</p>
+                  <h3>LKR {calculateTotal().toLocaleString()}</h3>
+                </div>
+
+                <form onSubmit={handleCheckoutSubmit}>
+                  <div className="form-group">
+                    <label>Card Number</label>
+                    <div className="card-input-wrapper">
+                      <input
+                        type="text"
+                        placeholder="0000 0000 0000 0000"
+                        value={cardDetails.number}
+                        onChange={handleCardInput}
+                        required
+                        maxLength="16"
+                      />
+                      <div className="card-type-icon">
+                        {cardType === "visa" && (
+                          <img
+                            src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg"
+                            alt="Visa"
+                          />
+                        )}
+                        {cardType === "mastercard" && (
+                          <img
+                            src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg"
+                            alt="Mastercard"
+                          />
+                        )}
+                        {cardType === "unknown" && (
+                          <span className="generic-card">💳</span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="form-group">
+                    <label>Cardholder Name</label>
+                    <input
+                      type="text"
+                      placeholder="John Doe"
+                      value={cardDetails.holder}
+                      onChange={(e) =>
+                        setCardDetails({
+                          ...cardDetails,
+                          holder: e.target.value,
+                        })
+                      }
+                      required
+                    />
+                  </div>
+
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label>Expiry Date</label>
+                      <input
+                        type="text"
+                        placeholder="MM/YY"
+                        value={cardDetails.expiry}
+                        onChange={(e) =>
+                          setCardDetails({
+                            ...cardDetails,
+                            expiry: e.target.value,
+                          })
+                        }
+                        required
+                        maxLength="5"
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label>CVC</label>
+                      <input
+                        type="password"
+                        placeholder="123"
+                        value={cardDetails.cvc}
+                        onChange={(e) =>
+                          setCardDetails({
+                            ...cardDetails,
+                            cvc: e.target.value,
+                          })
+                        }
+                        required
+                        maxLength="3"
+                      />
+                    </div>
+                  </div>
+
+                  <button type="submit" className="pay-now-btn">
+                    Pay LKR {calculateTotal().toLocaleString()}
+                  </button>
+                </form>
+              </div>
+            )}
+
+            {checkoutStep === "processing" && (
+              <div className="checkout-processing">
+                <div className="spinner"></div>
+                <p>Processing Payment...</p>
+              </div>
+            )}
+
+            {checkoutStep === "success" && (
+              <div className="checkout-success">
+                <div className="checkmark-circle">
+                  <div className="background"></div>
+                  <div className="checkmark draw"></div>
+                </div>
+                <h2>Payment Successful!</h2>
+                <p>Thank you for your purchase.</p>
+                <button className="back-to-store-btn" onClick={closeCheckout}>
+                  Continue Shopping
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* --- MAIN STORE CONTENT --- */}
       <div className="store-container">
         <aside className="store-sidebar">
           <h2>Filter By</h2>
-          
+
           {/* Color Filter */}
           <div className="filter-section">
-            <button className="filter-header">
+            <button
+              className="filter-header"
+              onClick={() => toggleFilter("color")}
+            >
               <span>Color</span>
-              <span className="arrow">▼</span>
+              <FaChevronDown className={`arrow ${expandedFilters.color ? "up" : ""}`} />
             </button>
+            {expandedFilters.color && (
+              <div className="filter-options">
+                {colorOptions.map((option, index) => (
+                  <label key={index} className="filter-option-item">
+                    <input type="checkbox" name="color" value={option} />
+                    <span>{option}</span>
+                  </label>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Material Filter */}
           <div className="filter-section">
-            <button className="filter-header">
+            <button
+              className="filter-header"
+              onClick={() => toggleFilter("material")}
+            >
               <span>Material</span>
-              <span className="arrow">▼</span>
+              <FaChevronDown className={`arrow ${expandedFilters.material ? "up" : ""}`} />
             </button>
+            {expandedFilters.material && (
+              <div className="filter-options">
+                {materialOptions.map((option, index) => (
+                  <label key={index} className="filter-option-item">
+                    <input type="checkbox" name="material" value={option} />
+                    <span>{option}</span>
+                  </label>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Availability Filter */}
           <div className="filter-section">
-            <button className="filter-header">
+            <button
+              className="filter-header"
+              onClick={() => toggleFilter("availability")}
+            >
               <span>Availability</span>
-              <span className="arrow">▼</span>
+              <FaChevronDown className={`arrow ${expandedFilters.availability ? "up" : ""}`} />
             </button>
+            {expandedFilters.availability && (
+              <div className="filter-options">
+                {availabilityOptions.map((option, index) => (
+                  <label key={index} className="filter-option-item">
+                    <input type="checkbox" name="availability" value={option} />
+                    <span>{option}</span>
+                  </label>
+                ))}
+              </div>
+            )}
           </div>
 
-          {/* Price Filter */}
           <div className="filter-section price-filter">
             <button className="filter-header">
               <span>Price</span>
-              <span className="arrow">▼</span>
+              <FaChevronDown className="arrow" />
             </button>
             <div className="price-inputs">
               <div className="price-input-group">
                 <label htmlFor="price-min">Min</label>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   id="price-min"
                   placeholder="Min"
                   value={filters.priceMin}
-                  onChange={(e) => setFilters({...filters, priceMin: e.target.value})}
+                  onChange={(e) =>
+                    setFilters({ ...filters, priceMin: e.target.value })
+                  }
                 />
               </div>
               <div className="price-input-group">
                 <label htmlFor="price-max">Max</label>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   id="price-max"
                   placeholder="Max"
                   value={filters.priceMax}
-                  onChange={(e) => setFilters({...filters, priceMax: e.target.value})}
+                  onChange={(e) =>
+                    setFilters({ ...filters, priceMax: e.target.value })
+                  }
                 />
               </div>
             </div>
@@ -134,29 +612,45 @@ const Store = () => {
 
         <div className="store-content">
           <div className="sort-section">
-            <select value={sortBy} onChange={handleSortChange} className="sort-dropdown">
-              <option value="popularity">Sort by popularity ▼</option>
-              <option value="price-low">Sort by price: low to high</option>
-              <option value="price-high">Sort by price: high to low</option>
-              <option value="latest">Sort by latest</option>
+            <span className="sort-label">Sort by:</span>
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="sort-dropdown"
+            >
+              <option value="popularity">Popularity</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="latest">Latest Arrivals</option>
             </select>
           </div>
 
           <div className="products-grid">
-            {products.map(product => (
+            {displayedProducts.map((product) => (
               <div key={product.id} className="product-card">
                 <div className="product-image">
-                  <img 
-                    src={product.image} 
-                    alt={product.name} 
+                  <img
+                    src={product.image}
+                    alt={product.name}
                     onError={(e) => {
-                      e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect width="400" height="300" fill="%23F5F0E8"/%3E%3Cimage href="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'200\'%3E%3Crect width=\'300\' height=\'200\' fill=\'%23D4A574\'/%3E%3C/svg%3E" x="50" y="50" width="300" height="200"/%3E%3C/svg%3E';
-                    }} 
+                      e.target.src =
+                        'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect width="400" height="300" fill="%23F5F0E8"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="24" fill="%238B7355"%3E' +
+                        encodeURIComponent(product.name) +
+                        "%3C/text%3E%3C/svg%3E";
+                    }}
                   />
+                  <button
+                    className="add-to-cart-btn"
+                    onClick={() => addToCart(product)}
+                  >
+                    Add to Cart
+                  </button>
                 </div>
                 <div className="product-info">
                   <h3>{product.name}</h3>
-                  <p className="product-price">{product.price}</p>
+                  <p className="product-price">
+                    LKR {product.price.toLocaleString()}
+                  </p>
                 </div>
               </div>
             ))}

@@ -28,7 +28,7 @@
 
 ### 1. Update Contact Information
    - **Files:** `src/components/Header.jsx`, `src/components/Footer.jsx`
-   - Verify phone numbers: +0728326219 / +0748563926
+   - Verify phone numbers: 0757161759 / 0767536087
    - Verify email: viharafurniture@gmail.com
    - Verify address in Hero and Footer components
 
