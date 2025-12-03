@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { FaPhone, FaEnvelope, FaHome } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaHome, FaCheckCircle, FaSpinner, FaFacebookF } from 'react-icons/fa';
+import { FaTiktok } from 'react-icons/fa6';
 import './Contact.css';
 
 const Contact = () => {
@@ -11,6 +12,13 @@ const Contact = () => {
     message: ''
   });
 
+  const [submissionState, setSubmissionState] = useState({
+    isLoading: false,
+    isSuccess: false,
+    isError: false,
+    message: ''
+  });
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -18,28 +26,69 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here (e.g., send to API)
-    console.log('Form submitted:', formData);
-    alert('Thank you for contacting us! We will get back to you soon.');
-    setFormData({
-      name: '',
-      email: '',
-      mobile: '',
-      subject: '',
+    
+    // Set loading state
+    setSubmissionState({
+      isLoading: true,
+      isSuccess: false,
+      isError: false,
       message: ''
     });
+
+    // Simulate API call
+    setTimeout(() => {
+      try {
+        // Handle form submission here (e.g., send to API)
+        console.log('Form submitted:', formData);
+        
+        // Set success state
+        setSubmissionState({
+          isLoading: false,
+          isSuccess: true,
+          isError: false,
+          message: 'Thank you for contacting us! We will get back to you soon.'
+        });
+
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          mobile: '',
+          subject: '',
+          message: ''
+        });
+
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+          setSubmissionState(prev => ({ ...prev, isSuccess: false }));
+        }, 5000);
+      } catch (error) {
+        // Set error state
+        setSubmissionState({
+          isLoading: false,
+          isSuccess: false,
+          isError: true,
+          message: 'Something went wrong. Please try again.'
+        });
+      }
+    }, 1500);
   };
 
   return (
     <div className="contact-page">
       <div className="contact-container">
-        <h1 className="contact-title">Let's Get in touch</h1>
+        <div className="page-header">
+          <h1 className="contact-title">Let's Get in touch</h1>
+          <p className="contact-tagline">We're here to help bring your furniture dreams to life</p>
+        </div>
 
         <div className="info-cards">
           <div className="info-card">
-            <FaPhone className="card-icon" />
+            <div className="card-icon">
+              <FaPhone />
+            </div>
             <p className="card-text">
               0757161759<br />
               0767536087
@@ -47,12 +96,16 @@ const Contact = () => {
           </div>
 
           <div className="info-card">
-            <FaEnvelope className="card-icon" />
+            <div className="card-icon">
+              <FaEnvelope />
+            </div>
             <p className="card-text">viharafurniture11@gmail.com</p>
           </div>
 
           <div className="info-card">
-            <FaHome className="card-icon" />
+            <div className="card-icon">
+              <FaHome />
+            </div>
             <p className="card-text">
               No.108/C/1,<br />
               Aluthgama,<br />
@@ -80,56 +133,128 @@ const Contact = () => {
           <h2 className="form-title">Contact Us</h2>
           <p className="form-subtitle">Fill this out so that we can learn more about your requirements.</p>
 
-          <form className="contact-form" onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="name"
-              placeholder="Name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
+          <div className="form-card">
+            <form className="contact-form" onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="name">Name *</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Enter your name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
+              <div className="form-group">
+                <label htmlFor="email">Email *</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Enter your email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-            <input
-              type="tel"
-              name="mobile"
-              placeholder="Mobile Number"
-              value={formData.mobile}
-              onChange={handleChange}
-              required
-            />
+              <div className="form-group">
+                <label htmlFor="mobile">Mobile Number *</label>
+                <input
+                  type="tel"
+                  id="mobile"
+                  name="mobile"
+                  placeholder="Enter your mobile number"
+                  value={formData.mobile}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-            <input
-              type="text"
-              name="subject"
-              placeholder="Subject"
-              value={formData.subject}
-              onChange={handleChange}
-              required
-            />
+              <div className="form-group">
+                <label htmlFor="subject">Subject *</label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  placeholder="Enter subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-            <textarea
-              name="message"
-              placeholder="Message"
-              rows="6"
-              value={formData.message}
-              onChange={handleChange}
-              required
-            ></textarea>
+              <div className="form-group">
+                <label htmlFor="message">Message *</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Enter your message"
+                  rows="6"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                ></textarea>
+              </div>
 
-            <div className="button-container">
-              <button type="submit" className="submit-btn">Submit</button>
+              <div className="button-container">
+                <button type="submit" className="submit-btn" disabled={submissionState.isLoading}>
+                  {submissionState.isLoading ? (
+                    <>
+                      <FaSpinner className="spinner-icon" />
+                      Sending...
+                    </>
+                  ) : (
+                    'Submit'
+                  )}
+                </button>
+              </div>
+            </form>
+          </div>
+
+          {/* Success Message */}
+          {submissionState.isSuccess && (
+            <div className="success-message">
+              <FaCheckCircle className="success-icon" />
+              <p>{submissionState.message}</p>
             </div>
-          </form>
+          )}
+
+          {/* Error Message */}
+          {submissionState.isError && (
+            <div className="error-message">
+              <p>{submissionState.message}</p>
+            </div>
+          )}
+        </div>
+
+        {/* Social Media Links */}
+        <div className="social-media-section">
+          <h3 className="social-title">Follow Us</h3>
+          <p className="social-subtitle">Stay connected for the latest designs and offers</p>
+          <div className="social-links">
+            <a 
+              href="https://www.facebook.com/viharafurniture" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="social-link facebook"
+              aria-label="Visit our Facebook page"
+            >
+              <FaFacebookF />
+            </a>
+            <a 
+              href="https://www.tiktok.com/@viharafurniture" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="social-link tiktok"
+              aria-label="Visit our TikTok page"
+            >
+              <FaTiktok />
+            </a>
+          </div>
         </div>
       </div>
     </div>

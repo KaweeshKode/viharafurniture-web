@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaMapMarkerAlt } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaArrowRight } from 'react-icons/fa';
 import './Hero.css';
 
 const Hero = () => {
@@ -10,7 +10,10 @@ const Hero = () => {
         <div className="hero-content">
           <p className="hero-subtitle">Vihara Furniture, Sri Lanka</p>
           <h1 className="hero-title">Imagine, Innovate, Inspire</h1>
-          <Link to="/about" className="hero-btn">About Us &gt;</Link>
+          <Link to="/about" className="hero-btn">
+            About Us
+            <FaArrowRight />
+          </Link>
         </div>
         <div className="location-card">
           <div className="location-card-header">

@@ -85,14 +85,28 @@
 
   .designing-content {
     flex-direction: column;
+    gap: 40px;
   }
 
   .designing-text {
     text-align: center;
   }
 
+  .designing-text p {
+    font-size: 16px;
+  }
+
   .expert-card {
     width: 100%;
     padding: 60px 40px;
+    min-height: 200px;
+  }
+
+  .expert-card h3 {
+    font-size: 24px;
+  }
+
+  .expert-card h3 svg {
+    font-size: 28px;
   }
 }

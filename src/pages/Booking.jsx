@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FaChevronLeft, FaChevronRight, FaClock, FaCalendarCheck, FaCheckCircle } from 'react-icons/fa';
 import "./Booking.css";
 
 const Booking = () => {
@@ -13,10 +14,10 @@ const Booking = () => {
   const [bookingSuccess, setBookingSuccess] = useState(false);
 
   const consultant = {
-    name: "Dr. A. Perera",
-    position: "Senior Interior Consultant",
+    name: "Tharu Samaraweera",
+    position: "Designer & Consultation",
     description:
-      "Over 15 years of experience in transforming living spaces. specialized in modern and traditional Sri Lankan architectural blends. I help you choose the right furniture that fits your lifestyle and budget.",
+      "Expert furniture designer with a passion for creating personalized spaces. I specialize in understanding your unique style and requirements to design custom furniture that perfectly complements your home. Let's work together to bring your vision to life with quality craftsmanship and attention to detail.",
   };
 
   const timeSlots = [
@@ -87,6 +88,16 @@ const Booking = () => {
     );
   };
 
+  const isToday = (day) => {
+    const today = new Date();
+    const checkDate = new Date(
+      currentMonth.getFullYear(),
+      currentMonth.getMonth(),
+      day
+    );
+    return isSameDay(today, checkDate);
+  };
+
   const handleDateClick = (day) => {
     const newSelectedDate = new Date(
       currentMonth.getFullYear(),
@@ -117,13 +128,14 @@ const Booking = () => {
         day
       );
       const isSelected = isSameDay(currentDateObj, selectedDate);
+      const isTodayDate = isToday(day);
 
       daysArray.push(
         <button
           key={day}
           className={`calendar-day ${isSelected ? "selected" : ""} ${
             isDisabled ? "disabled" : ""
-          }`}
+          } ${isTodayDate && !isSelected ? "today" : ""}`}
           onClick={() => !isDisabled && handleDateClick(day)}
           disabled={isDisabled}
         >
@@ -158,12 +170,23 @@ const Booking = () => {
   return (
     <div className="booking-page">
       <div className="booking-container">
+        <div className="page-header">
+          <h1 className="booking-title">Book Your Consultation</h1>
+          <p className="booking-tagline">Schedule a personalized session with our expert designer</p>
+        </div>
+
         <div className="consultant-header">
           <div className="consultant-avatar">
-            <div className="avatar-circle"></div>
+            <img 
+              src="/team/female-avatar.png" 
+              alt="Tharu Samaraweera"
+              className="avatar-circle"
+            />
           </div>
           <div className="consultant-info">
-            <h1>{consultant.name}</h1>
+            <div className="consultant-name-wrapper">
+              <h1>{consultant.name}</h1>
+            </div>
             <h2>{consultant.position}</h2>
             <div className="description-box">
               <p>{consultant.description}</p>
@@ -174,39 +197,21 @@ const Booking = () => {
         <div className="selection-container">
           {/* Calendar Section */}
           <div className="selection-box">
-            <div
-              className="calendar-header-controls"
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginBottom: "15px",
-              }}
-            >
+            <div className="calendar-header-controls">
               <button
                 onClick={() => changeMonth(-1)}
-                style={{
-                  background: "none",
-                  border: "none",
-                  fontSize: "18px",
-                  cursor: "pointer",
-                }}
+                className="calendar-nav-btn"
               >
-                &lt;
+                <FaChevronLeft />
               </button>
-              <h3 style={{ margin: 0 }}>
+              <h3>
                 {months[currentMonth.getMonth()]} {currentMonth.getFullYear()}
               </h3>
               <button
                 onClick={() => changeMonth(1)}
-                style={{
-                  background: "none",
-                  border: "none",
-                  fontSize: "18px",
-                  cursor: "pointer",
-                }}
+                className="calendar-nav-btn"
               >
-                &gt;
+                <FaChevronRight />
               </button>
             </div>
 
@@ -236,6 +241,7 @@ const Booking = () => {
                   }`}
                   onClick={() => setSelectedTime(time)}
                 >
+                  <FaClock className="time-icon" />
                   {time}
                 </button>
               ))}
@@ -244,7 +250,12 @@ const Booking = () => {
         </div>
 
         <div className="action-area">
-          <button className="book-now-main-btn" onClick={handleBookNow}>
+          <button 
+            className="book-now-main-btn" 
+            onClick={handleBookNow}
+            disabled={!selectedDate || !selectedTime}
+          >
+            <FaCalendarCheck />
             Book Now
           </button>
         </div>
@@ -277,8 +288,12 @@ const Booking = () => {
       )}
 
       {bookingSuccess && (
-        <div className="success-notification">
-          Booking Confirmed Successfully!
+        <div className="success-overlay">
+          <div className="success-card">
+            <FaCheckCircle className="success-icon-large" />
+            <h3>Booking Confirmed!</h3>
+            <p>Your consultation has been successfully scheduled.</p>
+          </div>
         </div>
       )}
     </div>

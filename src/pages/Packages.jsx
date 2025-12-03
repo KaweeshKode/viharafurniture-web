@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaTimes } from "react-icons/fa"; // Make sure you have react-icons installed
+import { FaTimes, FaEye, FaCalendarCheck } from "react-icons/fa";
 import "./Packages.css";
 
 const Packages = () => {
@@ -13,9 +13,9 @@ const Packages = () => {
       id: 1,
       name: "Traditional Sri Lankan",
       description:
-        "Experience the heritage of Ceylon with intricate wood carvings and warm tones.",
+        "Immerse yourself in the rich heritage of Ceylon with authentic handcrafted furniture featuring exquisite wood carvings, traditional patterns, and timeless warm tones that celebrate Sri Lankan craftsmanship.",
       details:
-        "This package includes fully customizable wood finishes (Teak, Mahogany, or Mara) and traditional cushion patterns.",
+        "This package showcases authentic Sri Lankan craftsmanship with fully customizable wood finishes including premium Teak, rich Mahogany, or elegant Mara. Each piece features traditional cushion patterns inspired by centuries-old designs, hand-carved details that tell stories of our culture, and durable construction techniques passed down through generations. Perfect for those who appreciate the timeless beauty of traditional Sri Lankan aesthetics combined with modern comfort and functionality.",
       image: "/packages/traditional-srilankan.png",
       furnitureItems: [
         { name: "Bed", img: "/products/tsl/bed.png" },
@@ -31,9 +31,9 @@ const Packages = () => {
       id: 2,
       name: "Modern White",
       description:
-        "Clean lines and minimalist aesthetics for the contemporary home.",
+        "Transform your space with sophisticated minimalist design featuring pristine white finishes, sleek clean lines, and contemporary elegance perfect for modern living and effortless style.",
       details:
-        "Includes stain-resistant fabrics and modular designs that can be rearranged to fit any room size.",
+        "Embrace contemporary living with our Modern White collection featuring sleek, clean-lined designs in pristine white finishes. This package includes premium stain-resistant fabrics perfect for busy households, innovative modular designs that adapt to any room configuration, and space-saving solutions for modern apartments. Each piece is crafted with high-quality materials, easy-to-clean surfaces, and versatile styling that complements any décor. Ideal for those who value simplicity, functionality, and a bright, airy atmosphere in their living spaces.",
       image: "/packages/modern-white.png",
       furnitureItems: [
         { name: "Armchair", img: "/products/mw/armchair.png" },
@@ -48,9 +48,9 @@ const Packages = () => {
       id: 3,
       name: "Luxury Golden",
       description:
-        "Opulence and grandeur with premium gold accents and velvet textures.",
+        "Indulge in unparalleled luxury with opulent designs featuring stunning gold accents, sumptuous velvet textures, and exquisite craftsmanship that transforms your home into a palace of elegance.",
       details:
-        "Features imported velvet fabrics, gold-leaf plating options, and handcrafted detailing.",
+        "Indulge in ultimate luxury with our Luxury Golden collection that exudes sophistication and elegance. This exclusive package features imported premium velvet fabrics in rich jewel tones, stunning gold-leaf plating options that catch and reflect light beautifully, and exquisite handcrafted detailing by master artisans. Each piece showcases ornate designs, solid wood construction with brass accents, and plush cushioning for exceptional comfort. Perfect for those who desire to make a bold statement and create a palatial ambiance in their homes with furniture that's truly a work of art.",
       image: "/packages/luxury-golden.png",
       furnitureItems: [
         { name: "Armchair", img: "/products/lg/armchair.png" },
@@ -103,6 +103,7 @@ const Packages = () => {
                   className="view-btn"
                   onClick={() => setSelectedPackage(pkg)}
                 >
+                  <FaEye />
                   View
                 </button>
               </div>
@@ -179,6 +180,7 @@ const Packages = () => {
                 className="book-session-btn-modal"
                 onClick={handleBookSession}
               >
+                <FaCalendarCheck />
                 Book a Session
               </button>
             </div>

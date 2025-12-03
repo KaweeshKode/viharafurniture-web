@@ -17,11 +17,13 @@
 }
 
 .testimonial-card {
-  background-color: #E8DCC8;
+  background-color: #fff;
   padding: 30px;
-  border-radius: 15px;
+  border-radius: 16px;
   text-align: left;
   transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f0f0f0;
 }
 
 .testimonial-card:hover {

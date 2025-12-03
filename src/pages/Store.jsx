@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { FaChevronDown } from "react-icons/fa";
 import "./Store.css";
 
 const Store = () => {
@@ -277,7 +278,12 @@ const Store = () => {
   return (
     <div className="store-page">
       <div className="store-header-section">
-        <h1>Sri Lanka's #1 Furniture Brand</h1>
+        <div className="page-header">
+          <h1 className="store-title">Sri Lanka's #1 Furniture Brand</h1>
+          <p className="store-tagline">
+            Explore our curated collection of premium furniture pieces crafted with care and designed for your comfort.
+          </p>
+        </div>
       </div>
 
       <button className="cart-float-btn" onClick={() => setIsCartOpen(true)}>
@@ -514,9 +520,7 @@ const Store = () => {
               onClick={() => toggleFilter("color")}
             >
               <span>Color</span>
-              <span className={`arrow ${expandedFilters.color ? "up" : ""}`}>
-                ▼
-              </span>
+              <FaChevronDown className={`arrow ${expandedFilters.color ? "up" : ""}`} />
             </button>
             {expandedFilters.color && (
               <div className="filter-options">
@@ -537,9 +541,7 @@ const Store = () => {
               onClick={() => toggleFilter("material")}
             >
               <span>Material</span>
-              <span className={`arrow ${expandedFilters.material ? "up" : ""}`}>
-                ▼
-              </span>
+              <FaChevronDown className={`arrow ${expandedFilters.material ? "up" : ""}`} />
             </button>
             {expandedFilters.material && (
               <div className="filter-options">
@@ -560,11 +562,7 @@ const Store = () => {
               onClick={() => toggleFilter("availability")}
             >
               <span>Availability</span>
-              <span
-                className={`arrow ${expandedFilters.availability ? "up" : ""}`}
-              >
-                ▼
-              </span>
+              <FaChevronDown className={`arrow ${expandedFilters.availability ? "up" : ""}`} />
             </button>
             {expandedFilters.availability && (
               <div className="filter-options">
@@ -581,7 +579,7 @@ const Store = () => {
           <div className="filter-section price-filter">
             <button className="filter-header">
               <span>Price</span>
-              <span className="arrow">▼</span>
+              <FaChevronDown className="arrow" />
             </button>
             <div className="price-inputs">
               <div className="price-input-group">
